@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<TransactionEntity, Long> {
+    TransactionEntity findFirstByTransactionId(Long transactionId);
 }

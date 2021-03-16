@@ -3,6 +3,7 @@ package com.ventail.ecommerce.domain.entity;
 import com.ventail.ecommerce.domain.enumeration.TransactionStatusEnum;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="Transaction")
@@ -33,6 +34,11 @@ public class TransactionEntity {
 
     @Column(name ="email", nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
+    private List<TransactionProductEntity> transactionProductEntityList;
+
+    public TransactionEntity() {}
 
     public Long getTransactionId() {
         return transactionId;
@@ -96,6 +102,14 @@ public class TransactionEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<TransactionProductEntity> getTransactionProductEntityList() {
+        return transactionProductEntityList;
+    }
+
+    public void setTransactionProductEntityList(List<TransactionProductEntity> transactionProductEntityList) {
+        this.transactionProductEntityList = transactionProductEntityList;
     }
 
     public TransactionEntity(Long transactionId, Double total, TransactionStatusEnum status, String addressLine1, String addressLine2, String firstName, String lastName, String email) {

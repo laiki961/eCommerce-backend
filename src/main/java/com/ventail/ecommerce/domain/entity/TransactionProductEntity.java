@@ -30,8 +30,13 @@ public class TransactionProductEntity {
         this.subtotal = product.getPrice()*quantity;
     }
 
-    public TransactionProductEntity() {
+    public TransactionProductEntity(ProductEntity product, TransactionEntity transaction) {
+        this.transactionProductId = transaction.getTransactionId()+"_"+product.getProductId();
+        this.product = product;
+        this.transaction = transaction;
     }
+
+    public TransactionProductEntity() {}
 
     public String getTransactionProductId() {
         return transactionProductId;

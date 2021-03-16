@@ -56,11 +56,15 @@ public class ProductServiceImpl implements ProductService {
 //        }
 //        return shoppingCartItems;
 //    }
+    @Override
+    public List<ProductEntity> getProductEntityByIds(List<Long> productIds){
+        return productRepository.findByProductIdIn(productIds); //ask database once only
+    }
 
     @Override
     public Map<Long, Product> getProductsByIds(List<Long> productIds){
         Map<Long, Product> shoppingCartItems = new HashMap<>();
-        List<ProductEntity> matchProducts = productRepository.findByProductIdIn(productIds); //ask database once only
+        List<ProductEntity> matchProducts = getProductEntityByIds(productIds); //ask database once only
         for(int i=0; i<matchProducts.size(); i++){
             shoppingCartItems.put(matchProducts.get(i).getProductId(), new Product(matchProducts.get(i)));
         }

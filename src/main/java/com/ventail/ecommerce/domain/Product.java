@@ -4,6 +4,9 @@ import com.ventail.ecommerce.domain.entity.ProductEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Product {
     private Long productId;
@@ -20,6 +23,8 @@ public class Product {
         this.imageUrl = productEntity.getImageUrl();
     }
 
+    public Product() {
+    }
 
 
     public Long getProductId() {
