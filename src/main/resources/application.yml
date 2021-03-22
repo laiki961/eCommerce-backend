@@ -9,4 +9,5 @@ spring:
 
 logging:
   level:
-    root: DEBUG
+    com:
+      ventail: DEBUG

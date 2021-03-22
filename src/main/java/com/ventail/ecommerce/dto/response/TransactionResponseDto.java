@@ -1,14 +1,28 @@
-package com.ventail.ecommerce.domain;
+package com.ventail.ecommerce.dto.response;
 
+import com.ventail.ecommerce.domain.Transaction;
 import com.ventail.ecommerce.domain.enumeration.TransactionStatusEnum;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Transaction {
+public class TransactionResponseDto {
     private Long transactionId;
-    private List<TransactionItem> items;
+    private List<TransactionItemsResponseDto> items;
     private Double total;
     private TransactionStatusEnum status;
+
+    public TransactionResponseDto(Transaction transaction) {
+        this.transactionId = transaction.getTransactionId();
+        List<TransactionItemsResponseDto> transactionItemsResponseDto = new ArrayList<>();
+        // Create TransactionItemsResponseDto
+        for(int i=0; i<transaction.getItems().size();i++){
+            transactionItemsResponseDto.add(new TransactionItemsResponseDto(transaction.getItems().get(i)));
+        }
+        this.items = transactionItemsResponseDto;
+        this.total = transaction.getTotal();
+        this.status = transaction.getStatus();
+    }
 
     public Long getTransactionId() {
         return transactionId;
@@ -18,11 +32,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public List<TransactionItem> getItems() {
+    public List<TransactionItemsResponseDto> getItems() {
         return items;
     }
 
-    public void setItems(List<TransactionItem> items) {
+    public void setItems(List<TransactionItemsResponseDto> items) {
         this.items = items;
     }
 
@@ -44,7 +58,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
+        return "TransactionResponseDto{" +
                 "transactionId=" + transactionId +
                 ", items=" + items +
                 ", total=" + total +

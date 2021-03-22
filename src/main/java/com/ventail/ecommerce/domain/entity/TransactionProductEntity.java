@@ -28,6 +28,7 @@ public class TransactionProductEntity {
         this.product = product;
         this.transaction = transaction;
         this.subtotal = product.getPrice()*quantity;
+        this.quantity = quantity;
     }
 
     public TransactionProductEntity(ProductEntity product, TransactionEntity transaction) {

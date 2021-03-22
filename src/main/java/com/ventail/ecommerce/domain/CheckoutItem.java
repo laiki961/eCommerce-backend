@@ -1,9 +1,10 @@
 package com.ventail.ecommerce.domain;
 
+import com.ventail.ecommerce.dto.request.CheckoutItemsRequestDto;
+
 public class CheckoutItem {
     private Long productId;
-//    private Integer quantity;
-
+    private Integer quantity;
 
     public Long getProductId() {
         return productId;
@@ -13,10 +14,19 @@ public class CheckoutItem {
         this.productId = productId;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
-        return "CheckoutItems{" +
+        return "CheckoutItem{" +
                 "productId=" + productId +
+                ", quantity=" + quantity +
                 '}';
     }
 }

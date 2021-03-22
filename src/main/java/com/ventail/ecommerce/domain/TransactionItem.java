@@ -1,6 +1,6 @@
 package com.ventail.ecommerce.domain;
 
-public class TransactionItems {
+public class TransactionItem {
     private Product details;
     private Integer quantity;
     private Double subtotal;

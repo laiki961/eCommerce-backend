@@ -20,23 +20,23 @@ public class TransactionEntity {
     @Enumerated(EnumType.ORDINAL) //Make Jpa to save enum name into the column value
     private TransactionStatusEnum status;
 
-    @Column(name = "billing_address1", nullable = false)
+    @Column(name = "billing_address1")
     private String addressLine1;
 
-    @Column(name = "billing_address2", nullable = false)
+    @Column(name = "billing_address2")
     private String addressLine2;
 
-    @Column(name ="first_name", nullable = false)
+    @Column(name ="first_name")
     private String firstName;
 
-    @Column(name ="last_name", nullable = false)
+    @Column(name ="last_name")
     private String lastName;
 
-    @Column(name ="email", nullable = false)
+    @Column(name ="email")
     private String email;
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
-    private List<TransactionProductEntity> transactionProductEntityList;
+    private List<TransactionProductEntity> transactionProducts;
 
     public TransactionEntity() {}
 
@@ -104,12 +104,12 @@ public class TransactionEntity {
         this.email = email;
     }
 
-    public List<TransactionProductEntity> getTransactionProductEntityList() {
-        return transactionProductEntityList;
+    public List<TransactionProductEntity> getTransactionProducts() {
+        return transactionProducts;
     }
 
-    public void setTransactionProductEntityList(List<TransactionProductEntity> transactionProductEntityList) {
-        this.transactionProductEntityList = transactionProductEntityList;
+    public void setTransactionProducts(List<TransactionProductEntity> transactionProducts) {
+        this.transactionProducts = transactionProducts;
     }
 
     public TransactionEntity(Long transactionId, Double total, TransactionStatusEnum status, String addressLine1, String addressLine2, String firstName, String lastName, String email) {

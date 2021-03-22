@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
 //    }
     @Override
     public List<ProductEntity> getProductEntityByIds(List<Long> productIds){
-        return productRepository.findByProductIdIn(productIds); //ask database once only
+        return productRepository.findByProductIdIn(productIds);
     }
 
     @Override
