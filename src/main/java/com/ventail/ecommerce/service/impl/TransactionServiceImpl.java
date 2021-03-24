@@ -67,12 +67,9 @@ public class TransactionServiceImpl implements TransactionService {
         Integer quantity = null;
         for (ProductEntity productEntity: products) {
             for (CheckoutItem checkoutItem : checkoutItems) {
-                logger.debug("101: "+productEntity.getProductId()+","+checkoutItem.getProductId());
                 if (checkoutItem.getProductId().equals(productEntity.getProductId())) {
-                    logger.debug(String.valueOf(checkoutItem.getProductId()));
-                    logger.debug(String.valueOf(productEntity.getProductId()));
-                    logger.debug(String.valueOf(checkoutItem.getQuantity()));
                     quantity = checkoutItem.getQuantity();
+                    logger.debug("quantity: "+ quantity.toString());
                 }
             }
             if(quantity == null){
@@ -81,12 +78,14 @@ public class TransactionServiceImpl implements TransactionService {
             TransactionProductEntity transactionProductEntity = new TransactionProductEntity(productEntity, transactionEntity, quantity);
             transactionProductRepository.save(transactionProductEntity);
             transactionProductEntityList.add(transactionProductEntity);
+            logger.debug("transactionProductRepository: "+  transactionProductEntity);
         }
 
         //Create TransactionDO
         return toTransaction(transactionEntity, transactionProductEntityList);
 
     }
+
     @Override
     public Transaction completeTransaction(Long transactionId, BillingInformation billingInformation){
         TransactionEntity transactionEntity = transactionRepository.findFirstByTransactionId(transactionId);
@@ -107,9 +106,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     private Transaction toTransaction(TransactionEntity transactionEntity, List<TransactionProductEntity> transactionProductEntityList){
         List<TransactionItem> transactionItems = new ArrayList<>();
+        logger.debug("Hihi");
         for (TransactionProductEntity transactionProductEntity: transactionProductEntityList) {
             TransactionItem transactionItem = new TransactionItem();
             transactionItem.setDetails(new Product(transactionProductEntity.getProduct()));
+            logger.debug("transactionProductEntity :" + transactionProductEntity.getQuantity().toString());
             transactionItem.setQuantity(transactionProductEntity.getQuantity());
             transactionItem.setSubtotal(transactionProductEntity.getSubtotal());
             transactionItems.add(transactionItem);
