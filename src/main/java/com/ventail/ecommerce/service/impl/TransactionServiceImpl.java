@@ -31,8 +31,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction getTransaction(Long transactionId) {
-        TransactionEntity entity = transactionRepository.findFirstByTransactionId(transactionId);
-        return toTransaction(entity, entity.getTransactionProducts());
+        TransactionEntity transactionEntity = transactionRepository.findFirstByTransactionId(transactionId);
+        logger.debug("[getTransaction] transactionRepository"+ transactionEntity);
+        return new Transaction(transactionEntity, transactionEntity.getTransactionProducts());
     }
 
     @Override
@@ -58,6 +59,7 @@ public class TransactionServiceImpl implements TransactionService {
         transactionEntity.setStatus(TransactionStatusEnum.initiated);
 
         transactionEntity = transactionRepository.save(transactionEntity);
+        logger.debug("[createTransaction], transactionRepository "+ transactionEntity);
 
         //save the specific transaction purchased products
         // if purchased 10 items -> have 10 TransactionProudctId
@@ -78,11 +80,11 @@ public class TransactionServiceImpl implements TransactionService {
             TransactionProductEntity transactionProductEntity = new TransactionProductEntity(productEntity, transactionEntity, quantity);
             transactionProductRepository.save(transactionProductEntity);
             transactionProductEntityList.add(transactionProductEntity);
-            logger.debug("transactionProductRepository: "+  transactionProductEntity);
+            logger.debug("[createTransaction], transactionProductRepository: "+  transactionProductEntity);
         }
 
         //Create TransactionDO
-        return toTransaction(transactionEntity, transactionProductEntityList);
+        return new Transaction(transactionEntity, transactionProductEntityList);
 
     }
 
@@ -101,28 +103,8 @@ public class TransactionServiceImpl implements TransactionService {
         transactionEntity.setAddressLine2(billingInformation.getBillingAddressLine2());
         transactionEntity = transactionRepository.save(transactionEntity);
 
-        return toTransaction(transactionEntity, transactionEntity.getTransactionProducts());
+        return new Transaction(transactionEntity, transactionEntity.getTransactionProducts());
     }
 
-    private Transaction toTransaction(TransactionEntity transactionEntity, List<TransactionProductEntity> transactionProductEntityList){
-        List<TransactionItem> transactionItems = new ArrayList<>();
-        logger.debug("Hihi");
-        for (TransactionProductEntity transactionProductEntity: transactionProductEntityList) {
-            TransactionItem transactionItem = new TransactionItem();
-            transactionItem.setDetails(new Product(transactionProductEntity.getProduct()));
-            logger.debug("transactionProductEntity :" + transactionProductEntity.getQuantity().toString());
-            transactionItem.setQuantity(transactionProductEntity.getQuantity());
-            transactionItem.setSubtotal(transactionProductEntity.getSubtotal());
-            transactionItems.add(transactionItem);
-        }
-
-        Transaction transaction = new Transaction();
-        transaction.setTransactionId(transactionEntity.getTransactionId());
-        transaction.setItems(transactionItems);
-        transaction.setTotal(transactionEntity.getTotal());
-        transaction.setStatus(transactionEntity.getStatus());
-
-        return transaction;
-    }
 
 }

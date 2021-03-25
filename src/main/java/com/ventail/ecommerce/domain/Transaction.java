@@ -1,7 +1,10 @@
 package com.ventail.ecommerce.domain;
 
+import com.ventail.ecommerce.domain.entity.TransactionEntity;
+import com.ventail.ecommerce.domain.entity.TransactionProductEntity;
 import com.ventail.ecommerce.domain.enumeration.TransactionStatusEnum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
@@ -9,6 +12,21 @@ public class Transaction {
     private List<TransactionItem> items;
     private Double total;
     private TransactionStatusEnum status;
+
+    public Transaction() {
+    }
+
+    public Transaction(TransactionEntity transactionEntity, List<TransactionProductEntity> transactionProductEntityList) {
+        this.transactionId = transactionEntity.getTransactionId();
+        List<TransactionItem> transactionItems = new ArrayList<>();
+        for (TransactionProductEntity transactionProductEntity: transactionProductEntityList) {
+            TransactionItem transactionItem = new TransactionItem(transactionProductEntity);
+            transactionItems.add(transactionItem);
+        }
+        this.items = transactionItems;
+        this.total = transactionEntity.getTotal();
+        this.status = transactionEntity.getStatus();
+    }
 
     public Long getTransactionId() {
         return transactionId;

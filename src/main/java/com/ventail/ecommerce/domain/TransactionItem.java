@@ -1,9 +1,23 @@
 package com.ventail.ecommerce.domain;
 
+import com.ventail.ecommerce.domain.entity.TransactionProductEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TransactionItem {
     private Product details;
     private Integer quantity;
     private Double subtotal;
+
+    public TransactionItem() {
+    }
+
+    public TransactionItem(TransactionProductEntity transactionProductEntity) {
+            this.details = new Product(transactionProductEntity.getProduct());
+            this.quantity =transactionProductEntity.getQuantity();
+            this.subtotal =transactionProductEntity.getSubtotal();
+    }
 
     public Product getDetails() {
         return details;
