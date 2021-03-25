@@ -1,5 +1,7 @@
 package com.ventail.ecommerce.domain.entity;
 
+import com.ventail.ecommerce.domain.enumeration.ProductCategoryEnum;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +16,9 @@ public class ProductEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "category", nullable = false)
+    private ProductCategoryEnum category;
 
     @Column(name ="description", nullable = false)
     private String description;
@@ -41,6 +46,14 @@ public class ProductEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ProductCategoryEnum getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategoryEnum category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -72,6 +85,7 @@ public class ProductEntity {
         return "ProductEntity{" +
                 "productId=" + productId +
                 ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", price=" + price +
