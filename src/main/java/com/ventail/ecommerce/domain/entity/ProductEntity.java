@@ -2,10 +2,7 @@ package com.ventail.ecommerce.domain.entity;
 
 import com.ventail.ecommerce.domain.enumeration.ProductCategoryEnum;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Product")
@@ -17,6 +14,7 @@ public class ProductEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "category", nullable = false)
     private ProductCategoryEnum category;
 
@@ -33,7 +31,6 @@ public class ProductEntity {
     public Long getProductId() {
         return productId;
     }
-
 
     //customise the productId
     public void setProductId(Long productId) {
