@@ -1,4 +1,4 @@
-package com.ventail.ecommerce.domain.dto;
+package com.ventail.ecommerce.domain.dto.response;
 
 public class UserInfoResponseDto {
     private String uid;

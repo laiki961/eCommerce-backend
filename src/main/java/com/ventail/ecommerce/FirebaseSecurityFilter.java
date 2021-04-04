@@ -18,10 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class FirebaseSecurityFilter extends
-        OncePerRequestFilter {
-    private Logger log =
-            LoggerFactory.getLogger(FirebaseSecurityFilter.class);
+public class FirebaseSecurityFilter extends OncePerRequestFilter {
+    private Logger log = LoggerFactory.getLogger(FirebaseSecurityFilter.class);
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {

@@ -20,7 +20,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts(){
         List<ProductEntity> products = productRepository.findAll();
-
         List<Product> productList = new ArrayList<>();
         for(int i=0; i<products.size();i++){
             Product product = new Product(products.get(i));
@@ -28,6 +27,29 @@ public class ProductServiceImpl implements ProductService {
         }
         return productList;
     }
+
+    @Override
+    public List<Product> getCategoryProducts(String category){
+        List<ProductEntity> categoryProducts = productRepository.findByCategory_Id(category);
+        List<Product> categoryProductList = new ArrayList<>();
+        for(int i=0; i<categoryProducts.size();i++){
+            Product product = new Product(categoryProducts.get(i));
+            categoryProductList.add(product);
+        }
+        return categoryProductList;
+    }
+
+    @Override
+    public List<Product> getProductsByProductName(String productName) {
+        List<ProductEntity> searchProducts = productRepository.findByNameLike("%" + productName + "%");
+        List<Product> searchProductsList = new ArrayList<>();
+        for(int i=0; i<searchProducts.size(); i++){
+            Product product = new Product(searchProducts.get(i));
+            searchProductsList.add(product);
+        }
+        return searchProductsList;
+    }
+
 
 //    public Product getProductDetailsV1(Long productId){
 //        List<ProductEntity> products = productRepository.findAll();

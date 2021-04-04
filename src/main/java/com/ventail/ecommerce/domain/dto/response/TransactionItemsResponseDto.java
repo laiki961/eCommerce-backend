@@ -1,4 +1,4 @@
-package com.ventail.ecommerce.dto.response;
+package com.ventail.ecommerce.domain.dto.response;
 
 import com.ventail.ecommerce.domain.TransactionItem;
 

@@ -1,4 +1,4 @@
-package com.ventail.ecommerce.dto.request;
+package com.ventail.ecommerce.domain.dto.request;
 
 public class CompleteTransactionRequestDto {
     private Long transactionId;

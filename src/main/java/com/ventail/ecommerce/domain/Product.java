@@ -1,7 +1,7 @@
 package com.ventail.ecommerce.domain;
 
+import com.ventail.ecommerce.domain.entity.CategoryEntity;
 import com.ventail.ecommerce.domain.entity.ProductEntity;
-import com.ventail.ecommerce.domain.enumeration.ProductCategoryEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -12,7 +12,7 @@ import java.util.Map;
 public class Product {
     private Long productId;
     private String name;
-    private ProductCategoryEnum category;
+    private Category category;
     private String description;
     private String imageUrl;
     private Double price;
@@ -20,11 +20,19 @@ public class Product {
     public Product(ProductEntity productEntity){
         this.productId = productEntity.getProductId();
         this.name = productEntity.getName();
-        this.category = productEntity.getCategory();
+        this.category = new Category(productEntity.getCategory());
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
         this.imageUrl = productEntity.getImageUrl();
     }
+
+//    public Product(ProductEntity productEntity){
+//        this.productId = productEntity.getProductId();
+//        this.name = productEntity.getName();
+//        this.description = productEntity.getDescription();
+//        this.price = productEntity.getPrice();
+//        this.imageUrl = productEntity.getImageUrl();
+//    }
 
     public Product() {
     }
@@ -45,11 +53,11 @@ public class Product {
         this.name = name;
     }
 
-    public ProductCategoryEnum getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(ProductCategoryEnum category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
