@@ -1,20 +1,23 @@
-package com.ventail.ecommerce.dto.response;
+package com.ventail.ecommerce.domain.dto.response;
 
+import com.ventail.ecommerce.domain.Category;
 import com.ventail.ecommerce.domain.Product;
 
 public class ProductResponseDto {
     private Long productId;
     private String productName;
+    private CategoryResponseDto category;
     private String description;
     private String imageUrl;
     private Double price;
 
-    public ProductResponseDto(Product proudct){
-        this.productId = proudct.getProductId();
-        this.productName = proudct.getName();
-        this.description = proudct.getDescription();
-        this.imageUrl = proudct.getImageUrl();
-        this.price = proudct.getPrice();
+    public ProductResponseDto(Product product){
+        this.productId = product.getProductId();
+        this.productName = product.getName();
+        this.category = new CategoryResponseDto(product.getCategory());
+        this.description = product.getDescription();
+        this.imageUrl = product.getImageUrl();
+        this.price = product.getPrice();
     }
 
     public Long getProductId() {
@@ -31,6 +34,14 @@ public class ProductResponseDto {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public CategoryResponseDto getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryResponseDto category) {
+        this.category = category;
     }
 
     public String getDescription() {

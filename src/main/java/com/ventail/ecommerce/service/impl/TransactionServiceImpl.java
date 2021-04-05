@@ -50,15 +50,22 @@ public class TransactionServiceImpl implements TransactionService {
         List<ProductEntity> products = productService.getProductEntityByIds(productIds);
         // Calculate total
         double totalPrice = 0;
+
+        TransactionEntity transactionEntity = new TransactionEntity();
         //loop products and accumulate total price
         for(ProductEntity item: products){
-            totalPrice += item.getPrice();
+            for(CheckoutItem checkoutItem: checkoutItems){
+                if(item.getProductId().equals(checkoutItem.getProductId())) {
+                    totalPrice += checkoutItem.getQuantity() * item.getPrice();
+                }
+            }
         }
-        TransactionEntity transactionEntity = new TransactionEntity();
+
         transactionEntity.setTotal(totalPrice);
         transactionEntity.setStatus(TransactionStatusEnum.initiated);
 
         transactionEntity = transactionRepository.save(transactionEntity);
+
         logger.debug("[createTransaction], transactionRepository "+ transactionEntity);
 
         //save the specific transaction purchased products

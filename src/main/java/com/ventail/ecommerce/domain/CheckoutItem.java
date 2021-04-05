@@ -1,7 +1,5 @@
 package com.ventail.ecommerce.domain;
 
-import com.ventail.ecommerce.dto.request.CheckoutItemsRequestDto;
-
 public class CheckoutItem {
     private Long productId;
     private Integer quantity;

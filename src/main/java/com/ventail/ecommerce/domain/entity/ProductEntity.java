@@ -1,9 +1,6 @@
 package com.ventail.ecommerce.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Product")
@@ -14,6 +11,10 @@ public class ProductEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private CategoryEntity category;
 
     @Column(name ="description", nullable = false)
     private String description;
@@ -29,7 +30,6 @@ public class ProductEntity {
         return productId;
     }
 
-
     //customise the productId
     public void setProductId(Long productId) {
         this.productId = productId;
@@ -41,6 +41,14 @@ public class ProductEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -72,6 +80,7 @@ public class ProductEntity {
         return "ProductEntity{" +
                 "productId=" + productId +
                 ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", price=" + price +

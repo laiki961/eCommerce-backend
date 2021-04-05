@@ -18,4 +18,8 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
     // e.g. productIds = [1, 3, 5];
     //SELECT * FROM Product WHERE product_id IN (1, 3, 5);
 
+    List<ProductEntity> findByCategory_Id(String categoryId);
+
+    //for search function
+    List<ProductEntity> findByNameLike(String productName);
 }
