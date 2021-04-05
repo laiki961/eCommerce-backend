@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Transaction {
     private Long transactionId;
-    private List<TransactionItem> items;
+    private List<TransactionProduct> items;
     private Double total;
     private TransactionStatusEnum status;
 
@@ -18,12 +18,12 @@ public class Transaction {
 
     public Transaction(TransactionEntity transactionEntity, List<TransactionProductEntity> transactionProductEntityList) {
         this.transactionId = transactionEntity.getTransactionId();
-        List<TransactionItem> transactionItems = new ArrayList<>();
+        List<TransactionProduct> transactionProducts = new ArrayList<>();
         for (TransactionProductEntity transactionProductEntity: transactionProductEntityList) {
-            TransactionItem transactionItem = new TransactionItem(transactionProductEntity);
-            transactionItems.add(transactionItem);
+            TransactionProduct transactionProduct = new TransactionProduct(transactionProductEntity);
+            transactionProducts.add(transactionProduct);
         }
-        this.items = transactionItems;
+        this.items = transactionProducts;
         this.total = transactionEntity.getTotal();
         this.status = transactionEntity.getStatus();
     }
@@ -36,11 +36,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public List<TransactionItem> getItems() {
+    public List<TransactionProduct> getItems() {
         return items;
     }
 
-    public void setItems(List<TransactionItem> items) {
+    public void setItems(List<TransactionProduct> items) {
         this.items = items;
     }
 
