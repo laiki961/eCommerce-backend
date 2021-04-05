@@ -25,11 +25,13 @@ public class ProductEntity {
 //    private String imageUrl;
 
     ////new (testing)
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product")
     private List<ProductImageEntity> imageUrls;
 
     @Column(name = "price", nullable = false)
     private Double price;
+
+    public ProductEntity() {}
 
     public Long getProductId() {
         return productId;

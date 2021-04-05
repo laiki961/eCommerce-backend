@@ -7,8 +7,9 @@ import javax.persistence.*;
 @Table(name="ProductImage")
 public class ProductImageEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "productImage_id", nullable = false, updatable = false)
-    private Long ProductImageId;
+    private Long productImageId;
 
     @ManyToOne
     @JoinColumn(name="product_id", nullable = false)
@@ -20,12 +21,18 @@ public class ProductImageEntity {
     public ProductImageEntity() {
     }
 
+    public ProductImageEntity(ProductEntity productEntity) {
+        this.productImageId = getProductImageId();
+        this.product = productEntity;
+        this.imageUrl = getImageUrl();
+    }
+
     public Long getProductImageId() {
-        return ProductImageId;
+        return productImageId;
     }
 
     public void setProductImageId(Long productImageId) {
-        ProductImageId = productImageId;
+        productImageId = productImageId;
     }
 
     public ProductEntity getProduct() {
@@ -47,7 +54,7 @@ public class ProductImageEntity {
     @Override
     public String toString() {
         return "ProductImageEntity{" +
-                "ProductImageId=" + ProductImageId +
+                "ProductImageId=" + productImageId +
                 ", product=" + product +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';

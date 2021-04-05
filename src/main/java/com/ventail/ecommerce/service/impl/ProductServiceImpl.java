@@ -1,9 +1,14 @@
 package com.ventail.ecommerce.service.impl;
 
+import com.ventail.ecommerce.api.ProductApi;
 import com.ventail.ecommerce.domain.Product;
 import com.ventail.ecommerce.domain.entity.ProductEntity;
+import com.ventail.ecommerce.domain.entity.ProductImageEntity;
+import com.ventail.ecommerce.repository.ProductImageRepository;
 import com.ventail.ecommerce.repository.ProductRepository;
 import com.ventail.ecommerce.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +19,36 @@ import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+    Logger logger = LoggerFactory.getLogger(ProductService.class);
+
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductImageRepository productImageRepository;
+    //previous
+//    @Override
+//    public List<Product> getAllProducts(){
+//        List<ProductEntity> products = productRepository.findAll();
+//        logger.debug("hihi");
+//        logger.debug(products.toString());
+//        List<Product> productList = new ArrayList<>();
+//        for(int i=0; i<products.size();i++){
+//            Product product = new Product(products.get(i));
+//            productList.add(product);
+//        }
+//        return productList;
+//    }
 
+    //new
     @Override
     public List<Product> getAllProducts(){
+        List<ProductImageEntity> productImageEntities = productImageRepository.findAll();
         List<ProductEntity> products = productRepository.findAll();
+        for(int i=0; i<products.size(); i++){
+            products.get(i).setImageUrl(productImageEntities);
+        }
+        logger.debug("hihi");
+        logger.debug(products.toString());
         List<Product> productList = new ArrayList<>();
         for(int i=0; i<products.size();i++){
             Product product = new Product(products.get(i));

@@ -1,5 +1,6 @@
 package com.ventail.ecommerce.repository;
 
+import com.ventail.ecommerce.domain.Product;
 import com.ventail.ecommerce.domain.entity.ProductEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,5 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
 
     //for search function
     List<ProductEntity> findByNameLike(String productName);
+
 }

@@ -37,7 +37,6 @@ public class ProductApi {
         } else if (categoryId.equals("all")) {
             List<ProductResponseDto> responseDtos = new ArrayList<>();
             List<Product> products = productService.getAllProducts();
-            logger.debug(products.toString());
             for (int i=0; i < products.size(); i++) {
                 ProductResponseDto dto = new ProductResponseDto(products.get(i));
                 responseDtos.add(dto);
