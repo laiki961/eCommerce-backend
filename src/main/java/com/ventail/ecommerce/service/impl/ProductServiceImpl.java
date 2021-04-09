@@ -25,26 +25,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductImageRepository productImageRepository;
-    //previous
-//    @Override
-//    public List<Product> getAllProducts(){
-//        List<ProductEntity> products = productRepository.findAll();
-//        logger.debug("hihi");
-//        logger.debug(products.toString());
-//        List<Product> productList = new ArrayList<>();
-//        for(int i=0; i<products.size();i++){
-//            Product product = new Product(products.get(i));
-//            productList.add(product);
-//        }
-//        return productList;
-//    }
 
-    //new
     @Override
     public List<Product> getAllProducts(){
         List<ProductImageEntity> productImageEntities = productImageRepository.findAll();
         List<ProductEntity> products = productRepository.findAll();
-        logger.debug("hihi");
         logger.debug(products.toString());
         List<Product> productList = new ArrayList<>();
         for(int i=0; i<products.size();i++){

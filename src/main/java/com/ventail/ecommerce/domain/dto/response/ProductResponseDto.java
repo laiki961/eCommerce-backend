@@ -12,18 +12,8 @@ public class ProductResponseDto {
     private String productName;
     private CategoryResponseDto category;
     private String description;
-//    private String imageUrl;
     private List<ProductImageResponseDto> imageUrls;
     private Double price;
-
-//    public ProductResponseDto(Product product){
-//        this.productId = product.getProductId();
-//        this.productName = product.getName();
-//        this.category = new CategoryResponseDto(product.getCategory());
-//        this.description = product.getDescription();
-//        this.imageUrl = product.getImageUrl();
-//        this.price = product.getPrice();
-//    }
 
     public ProductResponseDto(Product product) {
         this.productId = product.getProductId();
@@ -93,18 +83,6 @@ public class ProductResponseDto {
     public void setPrice(Double price) {
         this.price = price;
     }
-
-//    @Override
-//    public String toString() {
-//        return "ProductResponseDto{" +
-//                "id=" + productId +
-//                ", name='" + productName + '\'' +
-//                ", description='" + description + '\'' +
-//                ", imageUrl='" + imageUrl + '\'' +
-//                ", price='" + price + '\'' +
-//                '}';
-//    }
-
 
     @Override
     public String toString() {
