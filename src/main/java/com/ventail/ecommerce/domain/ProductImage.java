@@ -6,7 +6,7 @@ import com.ventail.ecommerce.domain.entity.ProductImageEntity;
 public class ProductImage {
 
     private Long ProductImageId;
-    private Product details;
+    private Long productId;
     private String imageUrl;
 
     public ProductImage() {
@@ -14,7 +14,7 @@ public class ProductImage {
 
     public ProductImage(ProductImageEntity productImageEntity) {
         this.ProductImageId = productImageEntity.getProductImageId();
-        this.details = new Product(productImageEntity.getProduct());
+        this.productId = productImageEntity.getProduct().getProductId();
         this.imageUrl = productImageEntity.getImageUrl();
     }
 
@@ -26,12 +26,12 @@ public class ProductImage {
         ProductImageId = productImageId;
     }
 
-    public Product getDetails() {
-        return details;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setDetails(Product details) {
-        this.details = details;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getImageUrl() {
@@ -46,7 +46,7 @@ public class ProductImage {
     public String toString() {
         return "ProductImage{" +
                 "ProductImageId=" + ProductImageId +
-                ", details=" + details +
+                ", productId=" + productId +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }

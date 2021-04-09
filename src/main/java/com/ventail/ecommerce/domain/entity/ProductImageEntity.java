@@ -55,7 +55,6 @@ public class ProductImageEntity {
     public String toString() {
         return "ProductImageEntity{" +
                 "ProductImageId=" + productImageId +
-                ", product=" + product +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }

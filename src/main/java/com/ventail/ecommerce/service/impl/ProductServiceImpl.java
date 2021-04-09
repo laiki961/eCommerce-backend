@@ -44,9 +44,6 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProducts(){
         List<ProductImageEntity> productImageEntities = productImageRepository.findAll();
         List<ProductEntity> products = productRepository.findAll();
-        for(int i=0; i<products.size(); i++){
-            products.get(i).setImageUrl(productImageEntities);
-        }
         logger.debug("hihi");
         logger.debug(products.toString());
         List<Product> productList = new ArrayList<>();
