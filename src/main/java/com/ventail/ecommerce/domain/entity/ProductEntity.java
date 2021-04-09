@@ -1,6 +1,7 @@
 package com.ventail.ecommerce.domain.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="Product")
@@ -20,11 +21,17 @@ public class ProductEntity {
     private String description;
 
     //one to many
-    @Column(name ="image_url", nullable = false)
-    private String imageUrl;
+//    @Column(name ="image_url", nullable = false)
+//    private String imageUrl;
+
+    ////new (testing)
+    @OneToMany(mappedBy = "product")
+    private List<ProductImageEntity> imageUrls;
 
     @Column(name = "price", nullable = false)
     private Double price;
+
+    public ProductEntity() {}
 
     public Long getProductId() {
         return productId;
@@ -59,12 +66,21 @@ public class ProductEntity {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+//    public String getImageUrl() {
+//        return imageUrl;
+//    }
+//
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
+
+
+    public List<ProductImageEntity> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrl(List<ProductImageEntity> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public Double getPrice() {
@@ -82,7 +98,7 @@ public class ProductEntity {
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", imageUrls='" + imageUrls + '\'' +
                 ", price=" + price +
                 '}';
     }

@@ -5,18 +5,18 @@ import com.ventail.ecommerce.domain.entity.TransactionProductEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransactionItem {
+public class TransactionProduct {
     private Product details;
     private Integer quantity;
     private Double subtotal;
 
-    public TransactionItem() {
+    public TransactionProduct() {
     }
 
-    public TransactionItem(TransactionProductEntity transactionProductEntity) {
+    public TransactionProduct(TransactionProductEntity transactionProductEntity) {
             this.details = new Product(transactionProductEntity.getProduct());
-            this.quantity =transactionProductEntity.getQuantity();
-            this.subtotal =transactionProductEntity.getSubtotal();
+            this.quantity = transactionProductEntity.getQuantity();
+            this.subtotal = transactionProductEntity.getSubtotal();
     }
 
     public Product getDetails() {

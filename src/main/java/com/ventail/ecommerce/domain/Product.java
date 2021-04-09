@@ -2,6 +2,7 @@ package com.ventail.ecommerce.domain;
 
 import com.ventail.ecommerce.domain.entity.CategoryEntity;
 import com.ventail.ecommerce.domain.entity.ProductEntity;
+import com.ventail.ecommerce.domain.entity.ProductImageEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -14,25 +15,36 @@ public class Product {
     private String name;
     private Category category;
     private String description;
-    private String imageUrl;
+//    private String imageUrl;
+    private List<ProductImage> imageUrls;
     private Double price;
 
-    public Product(ProductEntity productEntity){
+
+    //work (don't touch) previous version
+//    public Product(ProductEntity productEntity){
+//        this.productId = productEntity.getProductId();
+//        this.name = productEntity.getName();
+//        this.category = new Category(productEntity.getCategory());
+//        this.description = productEntity.getDescription();
+//        this.price = productEntity.getPrice();
+//        this.imageUrl = productEntity.getImageUrl();
+//    }
+
+
+    //new (testing)
+    public Product(ProductEntity productEntity) {
         this.productId = productEntity.getProductId();
         this.name = productEntity.getName();
         this.category = new Category(productEntity.getCategory());
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
-        this.imageUrl = productEntity.getImageUrl();
+        List<ProductImage> productImages = new ArrayList<>();
+        for (ProductImageEntity productImageEntity: productEntity.getImageUrls()){
+            ProductImage productImage =  new ProductImage(productImageEntity);
+            productImages.add(productImage);
+        }
+        this.imageUrls = productImages;
     }
-
-//    public Product(ProductEntity productEntity){
-//        this.productId = productEntity.getProductId();
-//        this.name = productEntity.getName();
-//        this.description = productEntity.getDescription();
-//        this.price = productEntity.getPrice();
-//        this.imageUrl = productEntity.getImageUrl();
-//    }
 
     public Product() {
     }
@@ -69,12 +81,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<ProductImage> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrls(List<ProductImage> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public Double getPrice() {
@@ -92,9 +104,8 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", category=" + category +
                 ", description='" + description + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", imageUrls=" + imageUrls +
                 ", price=" + price +
                 '}';
     }
-
 }

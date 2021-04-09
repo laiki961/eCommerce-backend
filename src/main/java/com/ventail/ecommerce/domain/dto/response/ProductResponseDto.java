@@ -2,21 +2,29 @@ package com.ventail.ecommerce.domain.dto.response;
 
 import com.ventail.ecommerce.domain.Category;
 import com.ventail.ecommerce.domain.Product;
+import com.ventail.ecommerce.domain.ProductImage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductResponseDto {
     private Long productId;
     private String productName;
     private CategoryResponseDto category;
     private String description;
-    private String imageUrl;
+    private List<ProductImageResponseDto> imageUrls;
     private Double price;
 
-    public ProductResponseDto(Product product){
+    public ProductResponseDto(Product product) {
         this.productId = product.getProductId();
         this.productName = product.getName();
         this.category = new CategoryResponseDto(product.getCategory());
         this.description = product.getDescription();
-        this.imageUrl = product.getImageUrl();
+        List<ProductImageResponseDto> productImageResponseDtos = new ArrayList<>();
+        for(ProductImage productImage: product.getImageUrls()){
+             productImageResponseDtos.add(new ProductImageResponseDto(productImage));
+        }
+        this.imageUrls = productImageResponseDtos;
         this.price = product.getPrice();
     }
 
@@ -52,12 +60,20 @@ public class ProductResponseDto {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+//    public String getImageUrl() {
+//        return imageUrl;
+//    }
+//
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
+
+    public List<ProductImageResponseDto> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrls(List<ProductImageResponseDto> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public Double getPrice() {
@@ -71,11 +87,12 @@ public class ProductResponseDto {
     @Override
     public String toString() {
         return "ProductResponseDto{" +
-                "id=" + productId +
-                ", name='" + productName + '\'' +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", category=" + category +
                 ", description='" + description + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", price='" + price + '\'' +
+                ", imageUrls=" + imageUrls +
+                ", price=" + price +
                 '}';
     }
 }
