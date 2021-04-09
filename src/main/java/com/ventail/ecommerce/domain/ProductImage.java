@@ -4,7 +4,6 @@ import com.ventail.ecommerce.domain.entity.ProductEntity;
 import com.ventail.ecommerce.domain.entity.ProductImageEntity;
 
 public class ProductImage {
-
     private Long ProductImageId;
     private Long productId;
     private String imageUrl;

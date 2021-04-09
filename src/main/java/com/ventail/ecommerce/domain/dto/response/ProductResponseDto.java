@@ -3,6 +3,7 @@ package com.ventail.ecommerce.domain.dto.response;
 import com.ventail.ecommerce.domain.Category;
 import com.ventail.ecommerce.domain.Product;
 import com.ventail.ecommerce.domain.ProductImage;
+import com.ventail.ecommerce.domain.Review;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ public class ProductResponseDto {
     private String description;
     private List<ProductImageResponseDto> imageUrls;
     private Double price;
+    //new
+    private List<ReviewResponseDto> reviews;
 
     public ProductResponseDto(Product product) {
         this.productId = product.getProductId();
@@ -26,6 +29,13 @@ public class ProductResponseDto {
         }
         this.imageUrls = productImageResponseDtos;
         this.price = product.getPrice();
+        //new
+        List<ReviewResponseDto> reviewResponseDtos = new ArrayList<>();
+        for(Review review: product.getReviews()){
+            reviewResponseDtos.add(new ReviewResponseDto(review));
+        }
+        this.reviews = reviewResponseDtos;
+        //
     }
 
     public Long getProductId() {
@@ -60,14 +70,6 @@ public class ProductResponseDto {
         this.description = description;
     }
 
-//    public String getImageUrl() {
-//        return imageUrl;
-//    }
-//
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
-
     public List<ProductImageResponseDto> getImageUrls() {
         return imageUrls;
     }
@@ -82,6 +84,14 @@ public class ProductResponseDto {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<ReviewResponseDto> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewResponseDto> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

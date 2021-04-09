@@ -20,16 +20,15 @@ public class ProductEntity {
     @Column(name ="description", nullable = false)
     private String description;
 
-    //one to many
-//    @Column(name ="image_url", nullable = false)
-//    private String imageUrl;
-
-    ////new (testing)
     @OneToMany(mappedBy = "product")
     private List<ProductImageEntity> imageUrls;
 
     @Column(name = "price", nullable = false)
     private Double price;
+
+    //new (testing)
+    @OneToMany(mappedBy = "product")
+    private List<ReviewEntity> reviews;
 
     public ProductEntity() {}
 
@@ -66,15 +65,6 @@ public class ProductEntity {
         this.description = description;
     }
 
-//    public String getImageUrl() {
-//        return imageUrl;
-//    }
-//
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
-
-
     public List<ProductImageEntity> getImageUrls() {
         return imageUrls;
     }
@@ -91,15 +81,37 @@ public class ProductEntity {
         this.price = price;
     }
 
+    public List<ReviewEntity> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewEntity> reviews) {
+        this.reviews = reviews;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "ProductEntity{" +
+//                "productId=" + productId +
+//                ", name='" + name + '\'' +
+//                ", category='" + category + '\'' +
+//                ", description='" + description + '\'' +
+//                ", imageUrls='" + imageUrls + '\'' +
+//                ", price=" + price +
+//                '}';
+//    }
+
+
     @Override
     public String toString() {
         return "ProductEntity{" +
                 "productId=" + productId +
                 ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
+                ", category=" + category +
                 ", description='" + description + '\'' +
-                ", imageUrls='" + imageUrls + '\'' +
+                ", imageUrls=" + imageUrls +
                 ", price=" + price +
+                ", reviews=" + reviews +
                 '}';
     }
 }

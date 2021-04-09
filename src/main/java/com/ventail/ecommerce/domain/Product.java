@@ -3,6 +3,7 @@ package com.ventail.ecommerce.domain;
 import com.ventail.ecommerce.domain.entity.CategoryEntity;
 import com.ventail.ecommerce.domain.entity.ProductEntity;
 import com.ventail.ecommerce.domain.entity.ProductImageEntity;
+import com.ventail.ecommerce.domain.entity.ReviewEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -15,23 +16,13 @@ public class Product {
     private String name;
     private Category category;
     private String description;
-//    private String imageUrl;
     private List<ProductImage> imageUrls;
     private Double price;
+    //new
+    private List<Review> reviews;
 
 
     //work (don't touch) previous version
-//    public Product(ProductEntity productEntity){
-//        this.productId = productEntity.getProductId();
-//        this.name = productEntity.getName();
-//        this.category = new Category(productEntity.getCategory());
-//        this.description = productEntity.getDescription();
-//        this.price = productEntity.getPrice();
-//        this.imageUrl = productEntity.getImageUrl();
-//    }
-
-
-    //new (testing)
     public Product(ProductEntity productEntity) {
         this.productId = productEntity.getProductId();
         this.name = productEntity.getName();
@@ -44,7 +35,16 @@ public class Product {
             productImages.add(productImage);
         }
         this.imageUrls = productImages;
+        //new(testing)
+        List<Review> reviews = new ArrayList<>();
+        for(ReviewEntity reviewEntity: productEntity.getReviews()){
+            reviews.add(new Review(reviewEntity));
+        }
+        this.reviews = reviews;
+        //
     }
+
+
 
     public Product() {
     }
@@ -95,6 +95,14 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override
