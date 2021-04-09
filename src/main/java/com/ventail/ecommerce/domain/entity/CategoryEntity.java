@@ -3,6 +3,7 @@ package com.ventail.ecommerce.domain.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="Category")
 public class CategoryEntity {
     @Id
     @Column(name = "category", nullable = false)
