@@ -70,8 +70,7 @@ public class ReviewEntity {
                 "reviewId=" + reviewId +
                 ", username='" + username + '\'' +
                 ", rating=" + rating +
-                ", comment='" + comment + '\'' +
-                ", product=" + product +
+                ", comment='" + comment +
                 '}';
     }
 }
