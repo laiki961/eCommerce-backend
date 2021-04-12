@@ -27,13 +27,25 @@ public class ReviewApi {
         return new ReviewResponseDto(review);
     }
 
+//    @GetMapping
+//    public List<ReviewResponseDto> fetchAllReview(){
+//        List<ReviewResponseDto> reviewResponseDtos = new ArrayList<>();
+//        List<Review> reviews = reviewService.getAllReviews();
+//        for(Review review: reviews){
+//            reviewResponseDtos.add(new ReviewResponseDto(review));
+//        }
+//        return reviewResponseDtos;
+//    }
+
+    //new
     @GetMapping
-    public List<ReviewResponseDto> fetchAllReview(){
+    public List<ReviewResponseDto> fetchAllReviewByProductId(@RequestParam Long productId){
         List<ReviewResponseDto> reviewResponseDtos = new ArrayList<>();
-        List<Review> reviews = reviewService.getAllReviews();
+        List<Review> reviews = reviewService.getAllReviewsByProductId(productId);
         for(Review review: reviews){
             reviewResponseDtos.add(new ReviewResponseDto(review));
         }
         return reviewResponseDtos;
     }
+
 }

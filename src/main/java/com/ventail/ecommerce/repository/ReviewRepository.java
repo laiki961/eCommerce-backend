@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ReviewRepository extends CrudRepository<ReviewEntity, Long> {
     List<ReviewEntity> findAll();
+    List<ReviewEntity> findByProduct_ProductId(Long productId);
 
 }

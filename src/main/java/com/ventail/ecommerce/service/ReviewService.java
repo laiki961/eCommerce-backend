@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ReviewService {
     Review createNewReview(Review review);
-    List<Review> getAllReviews();
+    List<Review> getAllReviewsByProductId(Long productId);
 }

@@ -37,15 +37,23 @@ public class ReviewServiceImpl implements ReviewService {
         return new Review(reviewEntity);
     }
 
-    @Override
-    public List<Review> getAllReviews() {
-        List<ReviewEntity> reviews = reviewRepository.findAll();
+//    @Override
+//    public List<Review> getAllReviews() {
+//        List<ReviewEntity> reviews = reviewRepository.findAll();
+//        List<Review> reviewList = new ArrayList<>();
+//        for(ReviewEntity reviewEntity: reviews){
+//            reviewList.add(new Review(reviewEntity));
+//        }
+//        return reviewList;
+//    }
+        @Override
+        public List<Review> getAllReviewsByProductId(Long productId) {
+        List<ReviewEntity> reviews = reviewRepository.findByProduct_ProductId(productId);
         List<Review> reviewList = new ArrayList<>();
         for(ReviewEntity reviewEntity: reviews){
             reviewList.add(new Review(reviewEntity));
         }
         return reviewList;
     }
-
 
 }
