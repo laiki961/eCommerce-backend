@@ -29,6 +29,7 @@ public class Product {
         this.category = new Category(productEntity.getCategory());
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
+        //covert List<ProductImageEntity> to List<ProductImage>
         List<ProductImage> productImages = new ArrayList<>();
         for (ProductImageEntity productImageEntity: productEntity.getImageUrls()){
             ProductImage productImage =  new ProductImage(productImageEntity);
@@ -44,10 +45,28 @@ public class Product {
         //
     }
 
-
-
     public Product() {
     }
+
+//    public ProductEntity toEntity(){
+//        ProductEntity productEntity = new ProductEntity();
+//        productEntity.setProductId(productId);
+//        productEntity.setCategory(category.toCategoryEntity());
+//        productEntity.setName(name);
+//        productEntity.setDescription(description);
+//        List<ProductImageEntity> productImageEntities = new ArrayList<>();
+//        for(int i=0; i<imageUrls.size() ; i++){
+//            ProductImageEntity productImageEntity = new ProductImageEntity();
+//            productImageEntity.setProductImageId(imageUrls.get(i).getProductImageId());
+//            productImageEntity.setProduct(); // how to pass itself ???
+//            productImageEntity.setImageUrl(imageUrls.get(i).getImageUrl());
+//            productImageEntities.add(productImageEntity);
+//        }
+//        productEntity.setImageUrl(productImageEntities);
+//        productEntity.setImageUrl(null);
+//        productEntity.setPrice(price);
+//        return productEntity;
+//    }
 
     public Long getProductId() {
         return productId;

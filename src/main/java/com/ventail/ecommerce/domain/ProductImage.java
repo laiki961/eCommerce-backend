@@ -1,10 +1,9 @@
 package com.ventail.ecommerce.domain;
 
-import com.ventail.ecommerce.domain.entity.ProductEntity;
 import com.ventail.ecommerce.domain.entity.ProductImageEntity;
 
 public class ProductImage {
-    private Long ProductImageId;
+    private Long productImageId;
     private Long productId;
     private String imageUrl;
 
@@ -12,17 +11,17 @@ public class ProductImage {
     }
 
     public ProductImage(ProductImageEntity productImageEntity) {
-        this.ProductImageId = productImageEntity.getProductImageId();
+        this.productImageId = productImageEntity.getProductImageId();
         this.productId = productImageEntity.getProduct().getProductId();
         this.imageUrl = productImageEntity.getImageUrl();
     }
 
     public Long getProductImageId() {
-        return ProductImageId;
+        return productImageId;
     }
 
     public void setProductImageId(Long productImageId) {
-        ProductImageId = productImageId;
+        this.productImageId = productImageId;
     }
 
     public Long getProductId() {
@@ -44,7 +43,7 @@ public class ProductImage {
     @Override
     public String toString() {
         return "ProductImage{" +
-                "ProductImageId=" + ProductImageId +
+                "ProductImageId=" + productImageId +
                 ", productId=" + productId +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';

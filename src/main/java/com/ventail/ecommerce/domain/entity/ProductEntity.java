@@ -1,6 +1,10 @@
 package com.ventail.ecommerce.domain.entity;
 
+import com.ventail.ecommerce.domain.Product;
+import com.ventail.ecommerce.domain.ProductImage;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity

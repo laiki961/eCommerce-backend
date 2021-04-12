@@ -1,36 +1,29 @@
-package com.ventail.ecommerce.domain.dto.response;
+package com.ventail.ecommerce.domain.dto.request;
 
 import com.ventail.ecommerce.domain.Review;
 
-public class ReviewResponseDto {
-    private Long reviewId;
+public class ReviewRequestDto {
+    private Long productId;
     private String userName;
     private Integer rating;
     private String comment;
 
 
-    public ReviewResponseDto(Review review) {
-        this.reviewId = review.getReviewId();
-        this.userName = review.getUserName();
-        this.rating = review.getRating();
-        this.comment = review.getComment();
-    }
-
     public Review toReview(){
         Review review = new Review();
-        review.setReviewId(reviewId);
+        review.setProductId(productId);
         review.setUserName(userName);
         review.setRating(rating);
         review.setComment(comment);
         return review;
     }
 
-    public Long getReviewId() {
-        return reviewId;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setReviewId(Long reviewId) {
-        this.reviewId = reviewId;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getUserName() {
@@ -59,9 +52,9 @@ public class ReviewResponseDto {
 
     @Override
     public String toString() {
-        return "ReviewResponseDto{" +
-                "reviewId=" + reviewId +
-                ", username='" + userName + '\'' +
+        return "ReviewRequestDto{" +
+                "productId='" + productId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", rating=" + rating +
                 ", comment='" + comment + '\'' +
                 '}';

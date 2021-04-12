@@ -60,10 +60,8 @@ public class TransactionServiceImpl implements TransactionService {
                 }
             }
         }
-
         transactionEntity.setTotal(totalPrice);
         transactionEntity.setStatus(TransactionStatusEnum.initiated);
-
         transactionEntity = transactionRepository.save(transactionEntity);
 
         logger.debug("[createTransaction], transactionRepository "+ transactionEntity);

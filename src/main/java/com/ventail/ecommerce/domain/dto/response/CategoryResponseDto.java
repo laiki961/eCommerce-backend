@@ -1,6 +1,7 @@
 package com.ventail.ecommerce.domain.dto.response;
 
 import com.ventail.ecommerce.domain.Category;
+import com.ventail.ecommerce.domain.entity.CategoryEntity;
 
 public class CategoryResponseDto {
     private String id;
@@ -10,6 +11,7 @@ public class CategoryResponseDto {
         this.id = category.getId();
         this.name = category.getName();
     }
+
 
     public String getId() {
         return id;

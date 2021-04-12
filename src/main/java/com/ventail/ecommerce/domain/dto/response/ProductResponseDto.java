@@ -15,8 +15,6 @@ public class ProductResponseDto {
     private String description;
     private List<ProductImageResponseDto> imageUrls;
     private Double price;
-    //new
-    private List<ReviewResponseDto> reviews;
 
     public ProductResponseDto(Product product) {
         this.productId = product.getProductId();
@@ -29,13 +27,7 @@ public class ProductResponseDto {
         }
         this.imageUrls = productImageResponseDtos;
         this.price = product.getPrice();
-        //new
-        List<ReviewResponseDto> reviewResponseDtos = new ArrayList<>();
-        for(Review review: product.getReviews()){
-            reviewResponseDtos.add(new ReviewResponseDto(review));
-        }
-        this.reviews = reviewResponseDtos;
-        //
+
     }
 
     public Long getProductId() {
@@ -86,13 +78,7 @@ public class ProductResponseDto {
         this.price = price;
     }
 
-    public List<ReviewResponseDto> getReviews() {
-        return reviews;
-    }
 
-    public void setReviews(List<ReviewResponseDto> reviews) {
-        this.reviews = reviews;
-    }
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package com.ventail.ecommerce.domain.entity;
 
+import com.ventail.ecommerce.domain.Review;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,8 +12,8 @@ public class ReviewEntity {
     @Column(name="review_id", nullable = false, updatable = false)
     private Long reviewId;
 
-    @Column(name ="username", nullable = false)
-    private String username;
+    @Column(name ="userName", nullable = false)
+    private String userName;
 
     @Column(name ="rating", nullable = false)
     private Integer rating;
@@ -23,6 +25,15 @@ public class ReviewEntity {
     @JoinColumn(name="product_id", nullable = false)
     private ProductEntity product;
 
+    public ReviewEntity() {
+    }
+
+    public ReviewEntity(Review review, ProductEntity productEntity) {
+        this.userName = review.getUserName();
+        this.rating = review.getRating();
+        this.comment = review.getComment();
+        this.product = productEntity;
+    }
 
     public Long getReviewId() {
         return reviewId;
@@ -32,12 +43,12 @@ public class ReviewEntity {
         this.reviewId = reviewId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getRating() {
@@ -68,7 +79,7 @@ public class ReviewEntity {
     public String toString() {
         return "ReviewEntity{" +
                 "reviewId=" + reviewId +
-                ", username='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", rating=" + rating +
                 ", comment='" + comment +
                 '}';
