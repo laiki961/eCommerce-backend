@@ -24,6 +24,7 @@ public class ReviewApi {
     public ReviewResponseDto createNewReview(@RequestBody ReviewRequestDto reviewRequestDto){ //reviewDto without ProductId
         Review review = reviewService.createNewReview(reviewRequestDto.toReview());
         //after created a review, render the list of review with the new review
+        logger.debug("ready to return ReviewResponseDto");
         return new ReviewResponseDto(review);
     }
 
@@ -45,6 +46,7 @@ public class ReviewApi {
         for(Review review: reviews){
             reviewResponseDtos.add(new ReviewResponseDto(review));
         }
+        logger.debug("ready to return List<ReviewResponseDto>");
         return reviewResponseDtos;
     }
 
