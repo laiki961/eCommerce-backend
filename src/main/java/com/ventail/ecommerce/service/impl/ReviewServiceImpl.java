@@ -46,6 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
 //        }
 //        return reviewList;
 //    }
+
         @Override
         public List<Review> getAllReviewsByProductId(Long productId) {
         List<ReviewEntity> reviews = reviewRepository.findByProduct_ProductId(productId);
