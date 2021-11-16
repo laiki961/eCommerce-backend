@@ -10,7 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**").allowedOrigins(
                 "http://localhost:3000",
-                "http://ecommerce-nikki.s3-website-ap-southeast-1.amazonaws.com",
+                "http://ecommerce-nikki.s3-website.ca-central-1.amazonaws.com",
+//                "http://ecommerce-nikki.s3-website-ap-southeast-1.amazonaws.com",
                 "http://localhost:3010");
     }
 }
