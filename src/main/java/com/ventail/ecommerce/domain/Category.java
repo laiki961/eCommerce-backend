@@ -6,9 +6,19 @@ public class Category {
     private String id;
     private String name;
 
+
+    //convert categoryEntity to Category
     public Category(CategoryEntity categoryEntity) {
         this.id = categoryEntity.getId();
         this.name = categoryEntity.getName();
+    }
+
+    //convert to CategoryEntity
+    public CategoryEntity toCategoryEntity(){
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setId(id);
+        categoryEntity.setName(name);
+        return categoryEntity;
     }
 
     public String getId() {

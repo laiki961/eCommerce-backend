@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts(){
-        List<ProductImageEntity> productImageEntities = productImageRepository.findAll();
+//        List<ProductImageEntity> productImageEntities = productImageRepository.findAll();
         List<ProductEntity> products = productRepository.findAll();
         logger.debug(products.toString());
         List<Product> productList = new ArrayList<>();
@@ -102,6 +102,11 @@ public class ProductServiceImpl implements ProductService {
             shoppingCartItems.put(matchProducts.get(i).getProductId(), new Product(matchProducts.get(i)));
         }
         return shoppingCartItems;
+    }
+
+    @Override
+    public ProductEntity getProductEntityById(Long productId){
+        return productRepository.findFirstByProductId(productId);
     }
 
 

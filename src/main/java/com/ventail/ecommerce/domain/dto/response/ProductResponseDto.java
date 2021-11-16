@@ -3,6 +3,7 @@ package com.ventail.ecommerce.domain.dto.response;
 import com.ventail.ecommerce.domain.Category;
 import com.ventail.ecommerce.domain.Product;
 import com.ventail.ecommerce.domain.ProductImage;
+import com.ventail.ecommerce.domain.Review;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ProductResponseDto {
         }
         this.imageUrls = productImageResponseDtos;
         this.price = product.getPrice();
+
     }
 
     public Long getProductId() {
@@ -60,14 +62,6 @@ public class ProductResponseDto {
         this.description = description;
     }
 
-//    public String getImageUrl() {
-//        return imageUrl;
-//    }
-//
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
-
     public List<ProductImageResponseDto> getImageUrls() {
         return imageUrls;
     }
@@ -83,6 +77,8 @@ public class ProductResponseDto {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+
 
     @Override
     public String toString() {

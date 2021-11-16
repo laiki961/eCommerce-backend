@@ -27,6 +27,7 @@ public class ProductImageEntity {
         this.imageUrl = getImageUrl();
     }
 
+
     public Long getProductImageId() {
         return productImageId;
     }
